@@ -1,0 +1,11 @@
+# requirements-host.in
+# Dependencies for host-side scripts like download_models.py
+torch
+whisperx
+transformers
+sentencepiece
+silero
+soundfile
+pydantic
+pydantic-settings
+pip-tools

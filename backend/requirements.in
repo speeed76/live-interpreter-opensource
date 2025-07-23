@@ -1,3 +1,4 @@
+# requirements.in for the backend service
 fastapi
 uvicorn
 websockets
