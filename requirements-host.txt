@@ -305,9 +305,7 @@ six==1.17.0
 sortedcontainers==2.4.0
     # via pyannote-core
 soundfile==0.13.1
-    # via
-    #   -r live-interpreter-opensource/requirements-host.in
-    #   pyannote-audio
+    # via pyannote-audio
 speechbrain==1.0.3
     # via pyannote-audio
 sqlalchemy==2.0.41

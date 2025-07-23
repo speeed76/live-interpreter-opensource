@@ -39,7 +39,18 @@ async def startup_event():
 
     loop = asyncio.get_running_loop()
     logger.info("Initializing LocalSpeechProcessor...")
-    processor = LocalSpeechProcessor(result_callback=result_callback)
+
+    def error_callback(message: str):
+        """A thread-safe callback to broadcast errors to clients."""
+        asyncio.run_coroutine_threadsafe(
+            manager.broadcast({"type": "error", "message": message}),
+            loop
+        )
+
+    processor = LocalSpeechProcessor(
+        result_callback=result_callback,
+        error_callback=error_callback
+    )
     
     logger.info("Starting background tasks...")
     asyncio.create_task(broadcast_data_periodically())
