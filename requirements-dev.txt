@@ -1,0 +1,5 @@
+# requirements-dev.txt
+# Dependencies for development and testing
+pytest
+pytest-asyncio
+httpx # Required by TestClient

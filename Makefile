@@ -20,6 +20,10 @@ logs:
 	@echo "Tailing logs..."
 	docker-compose logs -f
 
+test:
+	@echo "Running backend tests..."
+	docker-compose run --rm backend pytest
+
 # ====================================================================================
 #  Management
 # ====================================================================================
