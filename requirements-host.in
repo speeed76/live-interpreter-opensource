@@ -5,7 +5,6 @@ whisperx
 transformers
 sentencepiece
 silero
-soundfile
 pydantic
 pydantic-settings
 pip-tools

@@ -350,7 +350,6 @@ sortedcontainers==2.4.0
     # via pyannote-core
 soundfile==0.13.1
     # via
-    #   -r live-interpreter-opensource/backend/requirements.in
     #   librosa
     #   pyannote-audio
 soxr==0.5.0.post1
