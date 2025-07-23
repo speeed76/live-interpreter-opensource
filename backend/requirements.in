@@ -1,0 +1,17 @@
+# requirements.in for the backend service
+fastapi
+uvicorn
+websockets
+python-dotenv
+torch
+transformers
+accelerate
+whisperx
+librosa
+sentencepiece
+silero
+pydantic
+pydantic-settings
+soundfile
+structlog
+prometheus-fastapi-instrumentator
