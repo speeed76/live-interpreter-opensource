@@ -8,3 +8,9 @@ accelerate
 whisperx
 librosa
 sentencepiece
+silero
+pydantic
+pydantic-settings
+soundfile
+structlog
+prometheus-fastapi-instrumentator
