@@ -33,9 +33,17 @@ This is an open-source, self-hosted version of the Live Interpreter application.
     cd live-interpreter-opensource
     ```
 
-2.  **Build and run with Docker Compose:**
+2.  **Run the setup script:**
+    This script will check your environment, install dependencies like Docker, and download the necessary AI models.
     ```bash
-    docker-compose up --build
+    ./setup_environment.sh
+    ```
+    *Note: You may need to log out and log back in after the script runs for Docker permissions to apply, then run it again.*
+
+3.  **Build and run with Docker Compose:**
+    Once the setup script completes successfully, you can manage the application with the Makefile.
+    ```bash
+    make up
     ```
 
 ### Usage
