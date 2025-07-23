@@ -1,0 +1,10 @@
+# requirements-host.txt
+# Dependencies needed for scripts that run on the host machine, not in the Docker container.
+torch
+whisperx
+transformers
+sentencepiece
+silero
+soundfile
+pydantic
+pydantic-settings
