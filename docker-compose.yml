@@ -1,9 +1,17 @@
 version: '3.8'
+
+volumes:
+  models:
+  prometheus_data:
+  grafana_data:
+
 services:
   backend:
     build:
       context: .
       dockerfile: Dockerfile
+    volumes:
+      - models:/models
     ports:
       - "8000:8000"
     deploy:
@@ -13,10 +21,42 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    environment:
+      - MODEL_CACHE_DIR=/models
+      - LOG_LEVEL=INFO
+
   frontend:
     build:
       context: ./frontend
     ports:
       - "3000:3000"
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
+
+  prometheus:
+    image: prom/prometheus:v2.34.0
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana:8.5.2
+    volumes:
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+      - grafana_data:/var/lib/grafana
+    ports:
+      - "3001:3000" # Grafana UI will be on port 3001
+    depends_on:
+      - prometheus
